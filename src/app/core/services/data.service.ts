@@ -15,7 +15,7 @@ export class DataService {
     orders: IOrder[];
     states: IState[];
 
-    constructor(private http: HttpClient, private utilitiesService: UtilitiesService) {  }
+    constructor(private http: HttpClient, private utilitiesService: UtilitiesService) { }
 
     getCustomersPage(page: number, pageSize: number): Observable<IPagedResults<ICustomer[]>> {
         return this.http.get<ICustomer[]>(
@@ -59,6 +59,11 @@ export class DataService {
 
     insertCustomer(customer: ICustomer): Observable<ICustomer> {
         return this.http.post<ICustomer>(this.customersBaseUrl, customer)
+            .pipe(catchError(this.handleError));
+    }
+
+    insertOrder(custId: number, order: IOrder) {
+        return this.http.post<IOrder>(this.ordersBaseUrl, { custId, order })
             .pipe(catchError(this.handleError));
     }
 
@@ -118,6 +123,6 @@ export class DataService {
     //         observer.complete();
     //     });
     // }
-    
+
 
 }

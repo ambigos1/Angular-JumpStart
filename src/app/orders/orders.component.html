@@ -10,29 +10,35 @@
         <div class="container">
             <div *ngIf="customers">
 
-                <div class="row" *ngFor="let customer of customers;trackBy:trackbyService.customer">
+                <div class="row orders-table" *ngFor="let customer of customers;trackBy:trackbyService.customer">
                     <h4>{{ customer.firstName | capitalize }} {{ customer.lastName | capitalize }}</h4>
                     <br />
-                    <table *ngIf="customer.orders && customer.orders.length" class="table table-striped table-hover orders-table">
-                        <tr *ngFor="let order of customer.orders;trackBy:trackbyService.order">
-                            <td>{{order.productName}}</td>
-                            <td class="text-right">{{ order.itemCost | currency:'USD':'symbol' }}</td>    
-                        </tr>
-                        <tr class="summary-border">
-                            <td>&nbsp;</td>
-                            <td class="text-right">{{ customer.orderTotal | currency:'USD':'symbol' }}
-                        </tr>
-                    </table>
-                    <div *ngIf="!customer.orders || !customer.orders.length">
-                        No orders found
-                    </div> 
+
+                    <div *ngFor="let order of customer.orders;trackBy:trackbyService.order" class="row">
+                        <div class="col-xs-6">{{order.productName}}</div>
+                        <div class="col-xs-6" class="text-right">{{ order.itemCost | currency:'USD':'symbol' }}</div>
+                    </div>
+
+                    <div class="summary-border row text-right">
+
+                        <span>{{ customer.orderTotal | currency:'USD':'symbol' }}</span>
+                    </div>
+                    <div id="{{ 'add-order-field-' + customer.id }}" hidden class="row">
+                        <cm-add-order-field (saveOrder)="saveOrder($event)" [id]="customer.id"></cm-add-order-field>
+                    </div>
+
+                    <div class="row">
+                        <button type="button" class="btn btn-link" (click)="addOrder($event, customer.id)">
+                            <span class="glyphicon glyphicon-plus"></span>
+                            Add Order
+                        </button>
+                    </div>
                 </div>
 
                 <cm-pagination [hidden]="!customers"
-                    [totalItems]="totalRecords" 
-                    [pageSize]="pageSize" 
+                    [totalItems]="totalRecords"
+                    [pageSize]="pageSize"
                     (pageChanged)="pageChanged($event)"></cm-pagination>
-
             </div>
             <div *ngIf="!customers">
                 No customers found

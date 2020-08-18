@@ -1,0 +1,20 @@
+<form [formGroup]="form" class="row" (ngSubmit)="submit()" novalidate>
+    <div class="col-xs-5" [ngClass]="{ 'has-error': isSubmitted && formControls.name.errors }">
+        <label class="sr-only" for="productName">Product Name</label>
+        <input type="text" class="form-control" id="productName" placeholder="Product Name" formControlName="name"
+            required>
+        <div *ngIf="isSubmitted && formControls.name.errors" class="help-block has-error">
+            <div *ngIf="formControls.name.errors.required">Product Name is required</div>
+        </div>
+    </div>
+    <div class="col-xs-4 " [ngClass]="{ 'has-error': isSubmitted && formControls.price.errors }">
+        <label class="sr-only" for="Price">Price</label>
+        <input type="number" class="form-control" id="Price" placeholder="Price" formControlName="price" required>
+        <div *ngIf="isSubmitted && formControls.price.errors" class="help-block has-error">
+            <div *ngIf="formControls.price.errors.required">Price is not valid</div>
+        </div>
+    </div>
+    <div class="col-xs-3">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span> </button>
+    </div>
+</form>

@@ -40,6 +40,7 @@ th {
 }
 
 .summary-border {
+    margin-top: 0.5rem;
     border-top: 2px solid black;
 }
 

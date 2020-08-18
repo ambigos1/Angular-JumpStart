@@ -113,6 +113,15 @@ app.get('/api/orders/:id', function(req, res) {
     res.json([]);
 });
 
+app.post('/api/orders', (req, res) => {
+     const order = req.body.order;
+     const id = req.body.custId;
+     let cust = customers.find(x => x.id == id);
+     cust.orders.push({productName: order.productName, itemCost: order.itemCost });
+     console.log(cust);
+     res.json(id);
+});
+
 app.get('/api/states', (req, res) => {
     res.json(states);
 });
@@ -138,13 +147,13 @@ app.listen(port);
 
 console.log('Express listening on port ' + port);
 
-//Open browser
-if (!inContainer && !inAzure) {
-    var opn = require('opn');
+// //Open browser
+// if (!inContainer && !inAzure) {
+//     var opn = require('opn');
 
-    opn('http://localhost:' + port).then(() => {
-        console.log('Browser closed.');
-    });
-}
+//     opn('http://localhost:' + port).then(() => {
+//         console.log('Browser closed.');
+//     });
+// }
 
 

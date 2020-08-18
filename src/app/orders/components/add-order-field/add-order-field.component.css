@@ -1,0 +1,10 @@
+
+  form{
+    width: 100%;
+  }
+
+  .has-error{
+  border-color: red;
+  color: red;
+
+  }
