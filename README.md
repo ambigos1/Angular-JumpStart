@@ -30,5 +30,8 @@ By doing so we can give the user the best UX and optimize our orders ;)
 
 The Only thing that slowed me down is to upload the site to google cloud app engine
 
+Add Order fields (name, price) are in an independent component with custom validators
+
+![](src/assets/images/screenshots/custom-validators.png)
 
 Net Golf
