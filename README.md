@@ -21,6 +21,8 @@ app should be listen on  http://localhost:8080
 
 1. Run `ng test` to run our tests
 
+![](src/assets/images/screenshots/Karma-unit-tests.png)
+
 #### Personal notes
 
 My first priority was to add the option for user to add new orders with minimum clicks and effort, user can add multiples order without leaving the page.
