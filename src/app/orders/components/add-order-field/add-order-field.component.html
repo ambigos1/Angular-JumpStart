@@ -11,7 +11,7 @@
         <label class="sr-only" for="Price">Price</label>
         <input type="number" class="form-control" id="Price" placeholder="Price" formControlName="price" required>
         <div *ngIf="isSubmitted && formControls.price.errors" class="help-block has-error">
-            <div *ngIf="formControls.price.errors.required">Price is not valid</div>
+            <div *ngIf="formControls.price.errors">Price is not valid</div>
         </div>
     </div>
     <div class="col-xs-3">

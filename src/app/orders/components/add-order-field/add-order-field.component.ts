@@ -26,7 +26,7 @@ export class AddOrderFieldComponent implements OnInit {
     this.form = this.formBuilder.group({
       id: [this.id],
       name: ['', Validators.required],
-      price: ['', [Validators.required, Validators.min(1), Validators.max(99999), Validators.pattern("^[0-9]*$")]]
+      price: ['', [Validators.required, Validators.min(1), Validators.max(99999), Validators.pattern("^[0-9]+(.[0-9]{0,5})?$")]]
     });
   }
 
